@@ -6,7 +6,7 @@ getGPL <- function(GPL_ID){
 }
 
 getANN <- function(GEO_ID){
-lines <- readLines(paste0(,"_series_matrix.txt"))  
+lines <- readLines(paste0(GEO_ID,"_series_matrix.txt"))  
 lines_filtered <- lines[!grepl("!", lines)]  
 data <- read.table(textConnection(paste(lines_filtered, collapse="\n")), header=TRUE)  
 GPL$ID <- paste0("GPL",GPL$ID)
