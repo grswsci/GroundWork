@@ -1,9 +1,10 @@
 getGPL <- function(GPL_ID){
-  data_file <- system.file("data", paste0(GPLID,".RDS"), package = "GroundWork")
+  data_file <- system.file("data", paste0(GPL_ID,".RDS"), package = "GroundWork")
   GPL <- readRDS(data_file)
   GPL <- GPL[GPL$`Gene Symbol`!="",]
   return(GPL)
 }
+
 getANN <- function(GEO_ID){
 lines <- readLines(paste0(,"_series_matrix.txt"))  
 lines_filtered <- lines[!grepl("!", lines)]  
@@ -36,6 +37,7 @@ clinicallines_filtered <- clinicallines[substr(clinicallines,1,7)=="!Sample"]
 clinicaldata <- read.table(textConnection(paste(clinicallines_filtered, collapse="\n")), header=TRUE)  
 clinicaldata <- t(clinicaldata)
 write.table(clinicaldata,file=paste0(GEOID,".clinical.txt"),sep="\t",col.names=F,row.names=T,quote=F)
+return(clinicaldata)
 }
 
 zscore <- function(x) {
