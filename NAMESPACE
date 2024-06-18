@@ -1,4 +1,6 @@
 export(.onLoad)
 export(getGPL)
+export(getANN)
+export(getClinical)
 import(data.table)
 import(tidyverse)
