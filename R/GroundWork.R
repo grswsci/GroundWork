@@ -27,7 +27,7 @@ data <- na.omit(data)
 suppressPackageStartupMessages(library(limma))
 data <- avereps(data)
 out=rbind(symbol=colnames(data),data)
-write.table(out,file=paste0(GEOID,".Matrix.txt"),sep="\t",col.names=F,quote=F)
+write.table(out,file=paste0(GEO_ID,".Matrix.txt"),sep="\t",col.names=F,quote=F)
 return(data)
 }
 
@@ -36,7 +36,7 @@ clinicallines <- readLines(paste0(GEO_ID,"_series_matrix.txt"))
 clinicallines_filtered <- clinicallines[substr(clinicallines,1,7)=="!Sample"] 
 clinicaldata <- read.table(textConnection(paste(clinicallines_filtered, collapse="\n")), header=TRUE)  
 clinicaldata <- t(clinicaldata)
-write.table(clinicaldata,file=paste0(GEOID,".clinical.txt"),sep="\t",col.names=F,row.names=T,quote=F)
+write.table(clinicaldata,file=paste0(GEO_ID,".clinical.txt"),sep="\t",col.names=F,row.names=T,quote=F)
 return(clinicaldata)
 }
 
