@@ -40,7 +40,7 @@ write.table(clinicaldata,file=paste0(GEO_ID,".clinical.txt"),sep="\t",col.names=
 return(clinicaldata)
 }
 
-zscore <- function(x) {
+getZscore <- function(x) {
   rowmean <- apply(x, 1, mean)
   rowsd <- apply(x, 1, sd)  
   rv <- sweep(x, 1, rowmean,"-") 
