@@ -24,6 +24,19 @@ scRead10X <- function(dir,version="v5"){
     return(scRNA)
   }
 }
+
+scQC <- function(scRNA,
+                 pctMT=10,
+                 minGene=500,
+                 maxGene=4000,
+                 maxUMI=15000){
+  scRNA[["percent.MT"]] <- PercentageFeatureSet(scRNA, pattern = "^MT-")
+  scRNA <- subset(scRNA, subset = percent.MT < pctMT &
+                                  nCount_RNA < maxUMI &
+                                  nFeature_RNA > minGene &
+                                  nFeature_RNA < maxGene)
+}
+
 scPipeline <- function(scRNA,
                        method = "LogNormalize",
                        resolution = 0.1,
