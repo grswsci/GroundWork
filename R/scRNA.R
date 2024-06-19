@@ -166,3 +166,29 @@ getUMAP <- function(scRNA,Labels="seurat_clusters") {
   p6
   return(p6)
 }
+
+getMarkers <- function(scRNA,
+                       list = list(Epith=c("EPCAM"),
+                                   Fibro=c("COL1A2","COL3A1","DCN"),
+                                   Endo=c("TEK","PECAM1","FLT1","VWF"),#
+                                   Macro= c("CD68","LYZ"),
+                                   Mast=c("TPSAB1","TPSB2"),
+                                   B= c("CD79A","CD79B","CD19","MS4A1"),
+                                   Plasma=c("JCHAIN","XBP1"),
+                                   NK= c("KLRD1",'XCL2','XCL1'),
+                                   T=c("CD3G","CD3D","CD3E"),
+                                   CD8=c("CD8A","CD8B","NKG7","PRF1","GZMA"),
+                                   CD4=c("CD4")),
+                       Labels="seurat_clusters"){
+selected_markers = list
+
+plot <- DotPlot(scRNA,
+                features = selected_markers,
+                group.by = Labels) +
+  scale_colour_gradient2(low = c('lightgrey','#330066'),
+                         mid = '#336699',
+                         high =c('#66CC66','#FFCC33',"red"))+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # 设置角度为45度，并调整水平对齐方式
+
+return(plot)
+}

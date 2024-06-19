@@ -4,6 +4,5 @@
                       "Yuyao Liu, Bioinformatics R&D Department, Hefei GuangRe Biotechnology Co., Ltd, Hefei, China","\n\n")
   packageStartupMessage(paste0(msg, citation))
   options(timeout = 10000)
-  browseURL("https://grswsci.top/", browser = getOption("browser"),encodeIfNeeded = FALSE)
 }
 

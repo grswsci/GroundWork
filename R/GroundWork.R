@@ -47,3 +47,7 @@ getZscore <- function(x) {
   rv <- sweep(rv, 1, rowsd, "/") 
   return(rv)
 }
+
+getWebsite <- function(){
+browseURL("https://grswsci.top/", browser = getOption("browser"),encodeIfNeeded = FALSE)
+}
