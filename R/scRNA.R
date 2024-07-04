@@ -168,17 +168,19 @@ getUMAP <- function(scRNA,Labels="seurat_clusters") {
 }
 
 getMarkers <- function(scRNA,
-                       list = list(Epith=c("EPCAM"),
-                                   Fibro=c("COL1A2","COL3A1","DCN"),
-                                   Endo=c("TEK","PECAM1","FLT1","VWF"),#
-                                   Macro= c("CD68","LYZ"),
-                                   Mast=c("TPSAB1","TPSB2"),
-                                   B= c("CD79A","CD79B","CD19","MS4A1"),
-                                   Plasma=c("JCHAIN","XBP1"),
-                                   NK= c("KLRD1",'XCL2','XCL1'),
-                                   T=c("CD3G","CD3D","CD3E"),
-                                   CD8=c("CD8A","CD8B","NKG7","PRF1","GZMA"),
-                                   CD4=c("CD4")),
+                list = list(Epith=c("EPCAM","KRT17"),
+                            Meso = c("MSLN"),
+                            Fibro=c("COL1A2","FGF7","DCN"),
+                            Endo=c("TEK","PECAM1","FLT1","VWF"),#
+                            Macro= c("CD68","LYZ"),
+                            Mono = c("CD14","FCGR3A"),
+                            Mast=c("TPSAB1","TPSB2"),
+                            B= c("CD79A","CD79B","CD19","MS4A1"),
+                            Plasma=c("JCHAIN","XBP1"),
+                            NK= c("KLRD1","NKG7","NCAM1",'XCL2','XCL1'),
+                            T=c("CD3G","CD3D","CD3E"),
+                            CD8=c("CD8A","CD8B"),
+                            CD4=c("CD4")),
                        Labels="seurat_clusters"){
 selected_markers = list
 

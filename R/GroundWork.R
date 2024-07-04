@@ -51,3 +51,23 @@ getZscore <- function(x) {
 getWebsite <- function(){
 browseURL("https://grswsci.top/", browser = getOption("browser"),encodeIfNeeded = FALSE)
 }
+
+getplot <- function(type = "pdf", ncol = 1) {
+  library(ggplotify)
+  library(cowplot)
+  library(magick)
+  library(pdftools)
+  fnames <- Sys.glob(paste0("*.",type))
+  if(type == "pdf"){
+    p <- lapply(fnames,function(i){
+      pn <- as.ggplot(image_read_pdf(i))
+    })
+  }else if(type %in% c("jpg","png","tiff")){
+    p <- lapply(fnames,function(i){
+      pn <- as.ggplot(image_read(i))
+    })
+  }
+  
+  plot_grid(plotlist = p, ncol = ncol)
+  return(p)
+}
