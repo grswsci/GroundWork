@@ -95,4 +95,5 @@ write.table(out,
             sep="\t",
             row.names=F,
             quote=F)
+return(out)
 }
