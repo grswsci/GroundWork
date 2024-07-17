@@ -97,6 +97,31 @@ write.table(out,
             quote=F)
 return(out)
 }
+getMerge2 <- function(Tumor,GEO_ID,clinicalFile){
+  library(limma)             
+  Matrix = paste0(GEO_ID,".Matrix.txt")     
+  data = read.table(Matrix,sep="\t",header=TRUE,check.names=FALSE)
+  data = as.matrix(data)
+  rownames(data) = data[,1]
+  data = data[,-1]
+  class(data) = "numeric"
+  data = avereps(data)
+  data = t(data)
+  clinical = read.table(clinicalFile, header=T, sep="\t", check.names=F, fileEncoding="GB18030",row.names=1)
+  clinical$DiseaseType = paste0(Tumor,".",GEO_ID)
+  clinical = clinical[,c(2,1)]
+  sameSample = intersect(row.names(data),row.names(clinical))
+  data = data[sameSample,]
+  clinical = clinical[sameSample,]
+  out = cbind(clinical,data)
+  out = cbind(id=row.names(out),out)
+  write.table(out,
+              file=paste0(Tumor,".GEO.",GEO_ID,".",Tumor,".txt"),
+              sep="\t",
+              row.names=F,
+              quote=F)
+  return(out)
+}
 getGEO <- function(GEO_ID){
   options(timeout=1000000)
   if(nchar(GEO_ID) == 8){
